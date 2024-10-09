@@ -1,13 +1,11 @@
 const express = require("express");
-
+const { adminauth } = require("./middlewares/auth");
 const app = express();
 
-app.post("/user", (req, res) => {
-  res.send({ firstnmae: "yash", lastname: "tyagi" });
-});
+app.use("/admin", adminauth);
 
-app.use("/test", (req, res) => {
-  res.send("Hello from the server!");
+app.get("/admin/allrequest", (req, res) => {
+  res.send("Route Handler 1");
 });
 
 app.listen(3000, () => {
